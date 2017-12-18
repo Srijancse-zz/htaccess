@@ -1,0 +1,24 @@
+DirectoryIndex index.php index.html
+
+# The rewrite engine allows components to performs
+# rewriting on URLs, modifying their appearance.
+RewriteEngine On
+
+# Rewrites all requests to the www version
+RewriteCond %{HTTP_HOST} ^example.com$ [NC]
+RewriteRule (.*) http://www.example.com/$1 [R=301,L]
+
+# Makes php files accessible even without the .php extension
+RewriteRule ^([0-9a-z-_\/]+)$ $1.php [L]
+
+# Specify the 404 file if file not found
+ErrorDocument 404 /err.html
+
+# Redirect from old pages to new ones
+Redirect 301 /clerks.shtml /counties/florida-counties
+Redirect 301 /certificate.shtml /approved-traffic-school
+
+# Show moved permanently status
+Redirect 410 /resources.shtml
+Redirect 410 /learner_permit_select.shtml
+
